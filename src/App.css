@@ -1,0 +1,147 @@
+.app-root {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px;
+	background: #0f0f10;
+}
+
+.rack-body {
+	display: flex;
+	gap: 20px;
+	align-items: stretch;
+	/* A definite height is load-bearing here, not decorative: without it,
+	   .rack-body sizes itself to whichever child is naturally tallest before
+	   align-items: stretch ever runs — so a tall knob-column would still win
+	   and stretch the whole row (and the chassis) to match it, even with
+	   min-height: 0 + overflow-y: auto on the column itself. Fixing the row's
+	   own height is what lets those actually cap the column instead. */
+	height: 68vh;
+}
+
+.knob-column-wrapper {
+	position: relative;
+	flex: 1;
+	min-width: 280px;
+	max-width: 340px;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.knob-column {
+	flex: 1;
+	min-height: 0;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	scrollbar-width: thin;
+	scrollbar-color: var(--amber) #1c1c1e;
+}
+
+.knob-column::-webkit-scrollbar {
+	width: 6px;
+}
+
+.knob-column::-webkit-scrollbar-track {
+	background: #1c1c1e;
+	border-radius: 3px;
+}
+
+.knob-column::-webkit-scrollbar-thumb {
+	background: var(--amber);
+	border-radius: 3px;
+}
+
+.knob-column-wrapper.is-scrollable::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 6px;
+	bottom: 0;
+	height: 24px;
+	background: linear-gradient(to bottom, transparent, var(--panel-bg));
+	pointer-events: none;
+}
+
+.small-knob-row {
+	display: flex;
+	justify-content: space-around;
+	gap: 8px;
+}
+
+.export-row {
+	display: flex;
+	gap: 8px;
+}
+
+.export-row .hardware-button {
+	flex: 1;
+	width: auto;
+}
+
+.inline-error {
+	margin: 0;
+	padding: 10px 14px;
+	color: var(--error);
+	font-size: 13px;
+	background: rgba(217, 105, 90, 0.1);
+	border-radius: var(--radius-control);
+}
+
+.unit-caption {
+	margin: 0;
+	color: var(--text-dim);
+	font-size: 10px;
+	text-align: center;
+}
+
+.text-link-button {
+	display: block;
+	margin: 8px auto 0;
+	background: none;
+	border: none;
+	color: var(--text-muted);
+	font-family: var(--font-mono);
+	font-size: 10px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	cursor: pointer;
+	padding: 2px 8px;
+}
+
+.text-link-button:hover:not(:disabled) {
+	color: var(--text-primary);
+	text-decoration: underline;
+}
+
+.text-link-button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.inline-success {
+	margin: 0;
+	padding: 10px 14px;
+	color: var(--success);
+	font-size: 13px;
+	background: rgba(107, 203, 119, 0.1);
+	border-radius: var(--radius-control);
+}
+
+@media (max-width: 980px) {
+	.rack-body {
+		flex-direction: column;
+	}
+
+	.knob-column-wrapper {
+		max-width: none;
+	}
+
+	.knob-column {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+}

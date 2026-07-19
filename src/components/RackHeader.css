@@ -1,0 +1,52 @@
+.rack-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6px 10px 4px;
+}
+
+.rack-brand {
+	color: var(--text-primary);
+	font-size: 16px;
+	letter-spacing: 0.06em;
+}
+
+.rack-brand b {
+	color: var(--amber);
+}
+
+.rack-header-right {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	opacity: 0;
+}
+
+.import-label {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	color: var(--text-primary);
+	background: var(--panel-bg);
+	border: 1px solid #4a4a4e;
+	border-radius: var(--radius-control);
+	padding: 10px 16px;
+	cursor: pointer;
+}
+
+.import-label:hover {
+	background: #34343a;
+}
+
+.import-label.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+}

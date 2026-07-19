@@ -1,0 +1,25 @@
+.hardware-button {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: #f3e6d0;
+	background: var(--action);
+	border: none;
+	border-radius: var(--radius-control);
+	padding: 11px 14px;
+	box-shadow: 0 3px 0 var(--action-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	cursor: pointer;
+	width: 100%;
+	transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.hardware-button:active:not(:disabled) {
+	transform: translateY(2px);
+	box-shadow: 0 1px 0 var(--action-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.hardware-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

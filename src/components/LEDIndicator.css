@@ -1,0 +1,36 @@
+.led-indicator {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+}
+
+.led-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: var(--led-off);
+	flex-shrink: 0;
+}
+
+.led-dot.on.led-success {
+	background: var(--success);
+	box-shadow: 0 0 5px var(--success-glow);
+}
+
+.led-dot.on.led-amber {
+	background: var(--amber);
+	box-shadow: 0 0 5px var(--amber-glow);
+}
+
+.led-dot.on.led-error {
+	background: var(--error);
+	box-shadow: 0 0 5px rgba(217, 105, 90, 0.6);
+}
+
+.led-label {
+	color: var(--text-dim);
+	font-size: 9px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}

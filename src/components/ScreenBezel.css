@@ -1,0 +1,103 @@
+.screen-bezel {
+	flex: 2.4;
+	background: var(--screen-bezel);
+	border-radius: var(--radius-unit);
+	padding: 14px;
+	box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.7);
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.screen {
+	position: relative;
+	flex: 1;
+	min-height: 0;
+	border-radius: 6px;
+	overflow: hidden;
+	/* Two layers: a hard-edged solid block over the reserved filmstrip strip
+	   (matching DepthViewer's #17171A background, see LayerFilmstrip.css),
+	   on top of the bezel's warm brown CRT gradient everywhere else — so the
+	   reserved strip doesn't show brown bleeding through behind the filmstrip. */
+	background:
+		linear-gradient(
+			to right,
+			transparent 0,
+			transparent calc(100% - 220px),
+			var(--screen-bezel) calc(100% - 220px),
+			var(--screen-bezel) 100%
+		),
+		radial-gradient(circle at 30% 22%, var(--screen-bg-1) 0%, var(--screen-bg-2) 70%);
+	/* Reserves real space for the filmstrip (see LayerFilmstrip.css) so the
+	   photo/canvas — a normal-flow child — renders narrower instead of the
+	   filmstrip floating on top of it. */
+	padding-right: 220px;
+}
+
+.screen::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.12) 0px, rgba(0, 0, 0, 0.12) 1px, transparent 2px, transparent 3px);
+}
+
+.screen canvas {
+	display: block;
+}
+
+.screen--drag-active {
+	outline: 2px dashed var(--success);
+	outline-offset: -2px;
+}
+
+.screen-drop-overlay {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: var(--success-glow);
+	opacity: 0.1;
+}
+
+.no-signal {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.no-signal-static {
+	position: absolute;
+	inset: 0;
+	opacity: 0.06;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	animation: static-flicker 0.4s steps(2) infinite;
+}
+
+@keyframes static-flicker {
+	0% {
+		opacity: 0.04;
+	}
+	50% {
+		opacity: 0.09;
+	}
+	100% {
+		opacity: 0.05;
+	}
+}
+
+.no-signal-text {
+	position: relative;
+	color: var(--text-dim);
+	font-size: 11px;
+	letter-spacing: 0.05em;
+}
+
+.screen-caption {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px 6px 0;
+	color: var(--text-dim);
+	font-size: 11px;
+}

@@ -1,0 +1,80 @@
+.layer-filmstrip {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	bottom: 16px;
+	width: 180px;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 6px;
+	overflow-y: auto;
+	/* Matches DepthViewer's <color attach="background" args={["#17171A"]} />
+	   exactly, instead of a translucent panel that let the .screen bezel's
+	   warm brown CRT gradient (--screen-bg-1/2) bleed through. */
+	background: var(--screen-bezel);
+	border-radius: 6px;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	/* Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: var(--metal-light) transparent;
+}
+
+.layer-filmstrip::-webkit-scrollbar {
+	width: 6px;
+}
+
+.layer-filmstrip::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.layer-filmstrip::-webkit-scrollbar-thumb {
+	background: var(--metal-light);
+	border-radius: 3px;
+}
+
+.layer-filmstrip::-webkit-scrollbar-thumb:hover {
+	background: var(--amber);
+}
+
+.layer-tile {
+	flex: 0 0 130px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.04);
+	padding: 6px;
+	transition: opacity 0.2s ease;
+}
+
+.layer-tile--empty {
+	opacity: 0.4;
+}
+
+.layer-tile-header {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.layer-tile-label {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.layer-preview {
+	position: relative;
+	flex: 1;
+	min-height: 0;
+	border-radius: 4px;
+	overflow: hidden;
+	background: var(--screen-bezel);
+}
+
+.layer-preview-canvas {
+	width: 100%;
+	height: 100%;
+	display: block;
+}

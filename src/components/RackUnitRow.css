@@ -1,0 +1,36 @@
+.rack-unit-row {
+	background: var(--panel-bg);
+	border-radius: var(--radius-unit);
+	padding: 18px;
+}
+
+.rack-unit-row.empty {
+	opacity: 0.5;
+}
+
+.rack-unit-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 14px;
+}
+
+.rack-unit-title b {
+	color: var(--amber);
+	font-size: 11px;
+	letter-spacing: 0.05em;
+}
+
+.rack-unit-title span {
+	color: var(--text-muted);
+	font-size: 10px;
+}
+
+.empty-slot {
+	border: 1px dashed #4a4a4e;
+	border-radius: var(--radius-control);
+	padding: 22px 10px;
+	text-align: center;
+	color: #6a655a;
+	font-size: 10px;
+}

@@ -1,0 +1,41 @@
+:root {
+	--metal-light: #3e3e42;
+	--metal-dark: #242427;
+	--chassis-gradient: linear-gradient(160deg, var(--metal-light) 0%, var(--metal-dark) 100%);
+	--panel-bg: #2c2c30;
+	--rivet: #111111;
+
+	--screen-bezel: #17171a;
+	--screen-bg-1: #3a2a18;
+	--screen-bg-2: #1a140c;
+
+	--text-primary: #d8d3c8;
+	--text-muted: #9a8f7e;
+	--text-dim: #7a756a;
+
+	--amber: #e8b85c;
+	--amber-glow: rgba(232, 184, 92, 0.6);
+	--success: #6bcb77;
+	--success-glow: rgba(107, 203, 119, 0.6);
+	--error: #d9695a;
+	--action: #b5502a;
+	--action-shadow: #7a3719;
+	--led-off: #3a5a3e;
+
+	--radius-panel: 14px;
+	--radius-unit: 8px;
+	--radius-control: 6px;
+
+	--font-mono: "Space Mono", ui-monospace, "SF Mono", monospace;
+}
+
+body {
+	margin: 0;
+	background: #0f0f10;
+	color: var(--text-primary);
+	font-family: var(--font-mono);
+}
+
+* {
+	box-sizing: border-box;
+}

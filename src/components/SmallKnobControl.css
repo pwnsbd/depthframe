@@ -1,0 +1,45 @@
+.small-knob-control {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+}
+
+.small-knob-control.disabled {
+	opacity: 0.45;
+}
+
+.small-knob-face {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: radial-gradient(circle at 35% 30%, #55555a, #1c1c1e);
+	border: 2px solid #111;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	position: relative;
+	cursor: pointer;
+	touch-action: none;
+}
+
+.small-knob-control.disabled .small-knob-face {
+	cursor: not-allowed;
+}
+
+.small-knob-indicator {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	width: 2px;
+	height: 14px;
+	background: var(--amber);
+	box-shadow: 0 0 4px var(--amber-glow);
+	transform-origin: 50% 15px;
+}
+
+.small-knob-title {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 10px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
