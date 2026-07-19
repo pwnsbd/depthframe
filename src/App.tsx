@@ -138,8 +138,20 @@ function App() {
 			exportStageCanvasRef.current = null;
 			const timeoutId = setTimeout(() => {
 				exportStageReadyRef.current = null;
+				// Distinguishes "the offscreen <Canvas> itself never mounted/got a
+				// WebGL context" from "it mounted fine but the Suspense-gated
+				// texture load never resolved" — this whole mechanism has never
+				// actually been exercised in a real browser (only tsc/build
+				// verified so far), so if this fires again, this is the context
+				// needed to root-cause it instead of guessing blind.
+				const stage = exportStageCanvasRef.current ? "canvas created, but no frame ever rendered (texture load stalled?)" : "canvas was never created (onCreated never fired)";
+				console.error("Export stage timed out.", {
+					stage,
+					requestedSize: `${state.width}x${state.height}`,
+					userAgent: navigator.userAgent,
+				});
 				reject(new Error("Timed out preparing the export render — try again."));
-			}, 10000);
+			}, 20000);
 			exportStageReadyRef.current = {
 				resolve: (canvas) => {
 					clearTimeout(timeoutId);
@@ -312,6 +324,16 @@ function App() {
 								if (pending && exportStageCanvasRef.current) {
 									exportStageReadyRef.current = null; // guard against a second frame re-resolving/erroring
 									pending.resolve(exportStageCanvasRef.current);
+								} else {
+									// Should be unreachable — onCreated (which sets the canvas
+									// ref) always fires before the first useFrame in the same
+									// <Canvas> — but if it ever isn't, this would otherwise
+									// silently do nothing and wait out the full timeout with no
+									// clue why.
+									console.error("ExportStage's onFirstFrame fired without a ready canvas ref.", {
+										hasPending: pending !== null,
+										hasCanvas: exportStageCanvasRef.current !== null,
+									});
 								}
 							}}
 						/>
